@@ -41,6 +41,16 @@ func GetResults() ([]ReadableResult, error) {
 		return make([]ReadableResult, 0), err
 	}
 
+	sort.Slice(results, func(i, j int) bool {
+		a := results[i]
+		b := results[j]
+
+		aRank := a.VotesFor - a.VotesAgainst
+		bRank := b.VotesFor - b.VotesAgainst
+
+		return aRank > bRank
+	})
+
 	readableResults := make([]ReadableResult, 0, len(results))
 
 	for _, result := range results {
@@ -59,31 +69,6 @@ func GetResults() ([]ReadableResult, error) {
 			LossPercentage: lossPercentage,
 		})
 	}
-
-	sort.Slice(readableResults, func(i, j int) bool {
-		aWins, err := strconv.Atoi(readableResults[i].Wins)
-		if err != nil {
-			return false
-		}
-		bWins, err := strconv.Atoi(readableResults[j].Wins)
-		if err != nil {
-			return false
-		}
-		aLosses, err := strconv.Atoi(readableResults[i].Losses)
-		if err != nil {
-			return false
-		}
-		bLosses, err := strconv.Atoi(readableResults[j].Losses)
-		if err != nil {
-			return false
-		}
-
-		aRank := aWins - aLosses
-		bRank := bWins - bLosses
-
-		return aRank > bRank
-
-	})
 
 	for idx := range readableResults {
 		readableResults[idx].Rank = strconv.Itoa(idx + 1) // Rank starts from 1
