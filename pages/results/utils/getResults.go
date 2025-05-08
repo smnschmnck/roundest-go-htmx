@@ -3,6 +3,7 @@ package utils
 import (
 	"context"
 	"fmt"
+	"sort"
 	"strconv"
 
 	"github.com/smnschmnck/roundest-go-htmx/db"
@@ -40,25 +41,52 @@ func GetResults() ([]ReadableResult, error) {
 		return make([]ReadableResult, 0), err
 	}
 
-	readableResults := make([]ReadableResult, 0)
+	readableResults := make([]ReadableResult, 0, len(results))
 
-	for idx, result := range results {
+	for _, result := range results {
 		totalVotes := result.VotesAgainst + result.VotesFor
-		totalVotesString := strconv.Itoa(int(totalVotes))
 		winPercentage := getPercentage(result.VotesFor, int64(totalVotes))
 		lossPercentage := getPercentage(result.VotesAgainst, int64(totalVotes))
 
 		readableResults = append(readableResults, ReadableResult{
-			Rank:           strconv.Itoa(idx),
 			ID:             fmt.Sprintf("#%d", result.ID),
 			Name:           result.Name,
 			ImgUrl:         utils.GetPokeImageById(result.ID),
-			TotalVotes:     totalVotesString,
+			TotalVotes:     strconv.Itoa(int(totalVotes)),
 			Wins:           strconv.Itoa(int(result.VotesFor)),
 			Losses:         strconv.Itoa(int(result.VotesAgainst)),
 			WinPercentage:  winPercentage,
 			LossPercentage: lossPercentage,
 		})
+	}
+
+	sort.Slice(readableResults, func(i, j int) bool {
+		aWins, err := strconv.Atoi(readableResults[i].Wins)
+		if err != nil {
+			return false
+		}
+		bWins, err := strconv.Atoi(readableResults[j].Wins)
+		if err != nil {
+			return false
+		}
+		aLosses, err := strconv.Atoi(readableResults[i].Losses)
+		if err != nil {
+			return false
+		}
+		bLosses, err := strconv.Atoi(readableResults[j].Losses)
+		if err != nil {
+			return false
+		}
+
+		aRank := aWins - aLosses
+		bRank := bWins - bLosses
+
+		return aRank > bRank
+
+	})
+
+	for idx := range readableResults {
+		readableResults[idx].Rank = strconv.Itoa(idx + 1) // Rank starts from 1
 	}
 
 	return readableResults, nil
