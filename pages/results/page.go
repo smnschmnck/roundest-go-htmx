@@ -2,6 +2,7 @@ package results
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -33,7 +34,7 @@ func tHead() g.Node {
 	)
 }
 
-func resultRow(idx int, results queries.GetResultsRow) g.Node {
+func resultRow(idx int, result queries.GetResultsRow) g.Node {
 	return h.Tr(
 		h.Class("hover:bg-gray-800/50"),
 		h.Td(
@@ -42,19 +43,36 @@ func resultRow(idx int, results queries.GetResultsRow) g.Node {
 		),
 		h.Td(
 			h.Class("px-6 py-4 whitespace-nowrap"),
-			g.Text(results.Name),
+			h.Div(
+				h.Class("flex items-center"),
+				h.Img(
+					h.Class("w-10 h-10 rounded-lg bg-gray-800 p-1"),
+					h.Src(utils.GetPokeImageById(result.ID)),
+				),
+				h.Div(
+					h.Class("ml-4"),
+					h.Div(
+						h.Class("text-sm font-medium text-white"),
+						g.Text(result.Name),
+					),
+					h.Div(
+						h.Class("text-sm text-white/75"),
+						g.Text(fmt.Sprintf("#%d", result.ID)),
+					),
+				),
+			),
 		),
 		h.Td(
 			h.Class("px-6 py-4 whitespace-nowrap"),
-			g.Text(strconv.Itoa(int(results.VotesFor))),
+			g.Text(strconv.Itoa(int(result.VotesFor))),
 		),
 		h.Td(
 			h.Class("px-6 py-4 whitespace-nowrap"),
-			g.Text(strconv.Itoa(int(results.VotesAgainst))),
+			g.Text(strconv.Itoa(int(result.VotesAgainst))),
 		),
 		h.Td(
 			h.Class("px-6 py-4 whitespace-nowrap text-sm text-white"),
-			g.Text(strconv.Itoa(int(results.VotesAgainst+results.VotesFor))),
+			g.Text(strconv.Itoa(int(result.VotesAgainst+result.VotesFor))),
 		),
 	)
 }

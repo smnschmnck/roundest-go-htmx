@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/smnschmnck/roundest-go-htmx/db/queries"
+	"github.com/smnschmnck/roundest-go-htmx/utils"
 	g "maragu.dev/gomponents"
 	hx "maragu.dev/gomponents-htmx"
 	h "maragu.dev/gomponents/html"
@@ -34,7 +35,7 @@ func PokeView(pokemon queries.Pokemon, loserId int32) g.Node {
 		h.Img(
 			h.Class("w-48 h-48"),
 			h.Style("image-rendering: pixelated;"),
-			h.Src(fmt.Sprintf("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%d.png", pokemon.ID)),
+			h.Src(utils.GetPokeImage(pokemon)),
 		),
 		h.Div(
 			h.Class("flex flex-col justify-center items-center"),

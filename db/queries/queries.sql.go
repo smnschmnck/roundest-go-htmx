@@ -56,7 +56,7 @@ FROM pokemon p
     OR p.id = v.voted_against_id
 GROUP BY p.id,
     p.name
-ORDER BY p.id
+ORDER BY votes_for DESC
 `
 
 type GetResultsRow struct {
