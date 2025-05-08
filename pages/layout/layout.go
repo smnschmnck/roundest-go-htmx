@@ -45,7 +45,7 @@ func Layout(children ...g.Node) g.Node {
 				h.Class("flex w-full justify-center items-center"),
 				h.A(
 					h.Target("_blank"),
-					h.Href("https://github.com/smnschmnck"),
+					h.Href("https://github.com/smnschmnck/roundest-go-htmx"),
 					h.Class("font-light text-center py-3 text-gray-500"),
 					g.Text("GitHub"),
 				),
