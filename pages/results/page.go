@@ -39,7 +39,7 @@ func Page(c echo.Context) error {
 	}
 
 	page := layout.Layout(
-		h.Div(
+		h.Main(
 			h.Class("container mx-auto px-4 py-8"),
 			h.Div(
 				h.Class("rounded-lg shadow overflow-hidden"),

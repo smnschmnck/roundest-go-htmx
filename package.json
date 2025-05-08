@@ -5,7 +5,8 @@
   "scripts": {
     "tailwind:watch": "tailwindcss -i ./static/styles/app.css -o ./.build/static/styles/app.css --watch",
     "tailwind:build": "tailwindcss -i ./static/styles/app.css -o ./.build/static/styles/app.css --minify",
-    "build": "npm run tailwind:build && go build main.go"
+    "build": "npm run tailwind:build && go build main.go",
+    "start": "./main"
   },
   "keywords": [],
   "author": "",

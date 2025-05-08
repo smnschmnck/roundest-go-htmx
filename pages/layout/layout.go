@@ -37,10 +37,7 @@ func Layout(children ...g.Node) g.Node {
 					g.Text("Results"),
 				),
 			),
-			h.Div(
-				h.Class("h-full"),
-				g.Group(children),
-			),
+			g.Group(children),
 			h.Footer(
 				h.Class("flex w-full justify-center items-center"),
 				h.A(
