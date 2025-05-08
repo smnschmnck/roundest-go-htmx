@@ -14,7 +14,7 @@ func HtmlShell(children ...g.Node) g.Node {
 			Head: []g.Node{
 				h.Link(h.Rel("stylesheet"), h.Href("/static/styles/app.css"), h.Type("text/css")),
 				h.Link(h.Rel("icon"), h.Href("https://fav.farm/🍪")),
-				h.Script(h.Src("https://unpkg.com/htmx.org@1.9.12/dist/htmx.min.js")),
+				h.Script(h.Src("https://unpkg.com/htmx.org")),
 			},
 			HTMLAttrs: []g.Node{h.Class("h-full w-full")},
 			Body:      children,
