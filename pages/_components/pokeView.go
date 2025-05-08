@@ -17,6 +17,7 @@ func voteButton(winnerId int32, loserId int32) g.Node {
 
 	return h.Form(
 		hx.Post("/vote"),
+		h.Method("post"),
 		hx.Target("#battleground"),
 		hx.Swap("outerHTML"),
 		h.Input(h.Type("hidden"), h.Value(winnerIdString), h.Name("winnerId")),
