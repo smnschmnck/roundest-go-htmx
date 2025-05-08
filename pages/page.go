@@ -44,7 +44,7 @@ func battleground() g.Node {
 		h.Div(
 			h.Class("w-full h-full grow flex flex-col items-center justify-center gap-8"),
 			h.Div(
-				h.Class("grid grid-cols-2 gap-8"),
+				h.Class("md:grid grid-cols-2 gap-8"),
 				components.PokeView(pokemon[0], pokemon[1].ID),
 				components.PokeView(pokemon[1], pokemon[0].ID),
 			),
