@@ -1,0 +1,20 @@
+{
+  "tailwindCSS.includeLanguages": {
+    "go": "html"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["Class(?:es)?[({]([^)}]*)[)}]", "[\"`]([^\"`]*)[\"`]"]
+  ],
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "roundest-db",
+      "database": "postgres",
+      "password": "devPassword",
+      "username": "postgres"
+    }
+  ]
+}
