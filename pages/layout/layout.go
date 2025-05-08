@@ -7,9 +7,9 @@ import (
 
 func Layout(children ...g.Node) g.Node {
 	return HtmlShell(
-		h.Class("h-full w-full text-white"),
+		h.Class("h-full w-full bg-gray-950 text-white"),
 		h.Div(
-			h.Class("flex flex-col bg-gray-950 h-full w-full"),
+			h.Class("flex flex-col min-h-full w-full"),
 			h.Nav(
 				h.Class("flex justify-between items-center px-8 py-4 border-t-2 border-t-blue-500"),
 				h.Div(
