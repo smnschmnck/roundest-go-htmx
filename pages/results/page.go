@@ -34,6 +34,28 @@ func tHead() g.Node {
 	)
 }
 
+func resultIndicator(label string, absolute string, percentage string) g.Node {
+	return h.Div(
+		h.Class("w-48"),
+		h.Div(
+			h.Class("flex justify-between"),
+			h.Span(
+				h.Class("text-sm font-medium text-white"),
+				g.Text(percentage+"%"),
+			),
+			h.Span(
+				h.Class("text-sm text-white/75"),
+				g.Text(absolute+" "+label),
+			),
+		),
+		h.Progress(
+			h.Class("w-full h-2 [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg [&::-webkit-progress-bar]:bg-gray-700 [&::-webkit-progress-value]:bg-green-600 [&::-moz-progress-bar]:bg-green-600"),
+			h.Value(percentage),
+			h.Max("100"),
+		),
+	)
+}
+
 func resultRow(idx int, result queries.GetResultsRow) g.Node {
 	return h.Tr(
 		h.Class("hover:bg-gray-800/50"),
@@ -64,11 +86,11 @@ func resultRow(idx int, result queries.GetResultsRow) g.Node {
 		),
 		h.Td(
 			h.Class("px-6 py-4 whitespace-nowrap"),
-			g.Text(strconv.Itoa(int(result.VotesFor))),
+			resultIndicator("wins", strconv.Itoa(int(result.VotesFor)), "50"),
 		),
 		h.Td(
 			h.Class("px-6 py-4 whitespace-nowrap"),
-			g.Text(strconv.Itoa(int(result.VotesAgainst))),
+			resultIndicator("losses", strconv.Itoa(int(result.VotesAgainst)), "20"),
 		),
 		h.Td(
 			h.Class("px-6 py-4 whitespace-nowrap text-sm text-white"),
