@@ -4,6 +4,8 @@ go 1.24.3
 
 require maragu.dev/gomponents v1.1.0
 
+require golang.org/x/time v0.8.0 // indirect
+
 require (
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
