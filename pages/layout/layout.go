@@ -36,6 +36,8 @@ func Layout(children ...g.Node) g.Node {
 				h.A(
 					h.Class("text-lg hover:underline"),
 					h.Href("/results"),
+					h.Preload("mouseover"),
+					g.Attr("preload-images", "true"),
 					g.Text("Results"),
 				),
 			),
