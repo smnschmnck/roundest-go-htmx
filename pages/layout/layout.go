@@ -2,6 +2,7 @@ package layout
 
 import (
 	g "maragu.dev/gomponents"
+	hx "maragu.dev/gomponents-htmx"
 	h "maragu.dev/gomponents/html"
 )
 
@@ -11,6 +12,7 @@ func Layout(children ...g.Node) g.Node {
 		h.Div(
 			h.Class("flex flex-col min-h-full h-full w-full"),
 			h.Nav(
+				hx.Boost("true"),
 				h.Class("flex justify-between items-center px-8 py-4 border-t-2 border-t-blue-500"),
 				h.Div(
 					h.Class("flex items-center gap-2"),
