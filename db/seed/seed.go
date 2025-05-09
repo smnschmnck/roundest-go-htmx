@@ -27,7 +27,7 @@ type APIResponse struct {
 func fetchAllPokemon() ([]PokemonResult, error) {
 	fmt.Println("FETCHING POKEMON...")
 
-	url := "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
+	url := "https://pokeapi.co/api/v2/pokemon?limit=1025&offset=0"
 
 	resp, err := http.Get(url)
 	if err != nil {
