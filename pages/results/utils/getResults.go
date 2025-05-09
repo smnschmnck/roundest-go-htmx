@@ -48,6 +48,10 @@ func GetResults() ([]ReadableResult, error) {
 		aRank := a.VotesFor - a.VotesAgainst
 		bRank := b.VotesFor - b.VotesAgainst
 
+		if aRank == bRank {
+			return a.VotesFor > b.VotesFor
+		}
+
 		return aRank > bRank
 	})
 
