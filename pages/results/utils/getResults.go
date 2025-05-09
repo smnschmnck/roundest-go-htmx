@@ -22,15 +22,19 @@ type ReadableResult struct {
 	LossPercentage string
 }
 
-func getPercentage(votes int64, total int64) string {
+func getPercentage(votes int64, total int64) float64 {
 	if votes <= 0 {
-		return "0"
+		return 0
 	}
 	if total <= 0 {
-		return "0"
+		return 0
 	}
 
-	percentage := (float64(votes) / float64(total)) * 100
+	return (float64(votes) / float64(total)) * 100
+}
+
+func getPercentageString(votes int64, total int64) string {
+	percentage := getPercentage(votes, total)
 
 	return fmt.Sprintf("%.2f", percentage)
 }
@@ -45,8 +49,8 @@ func GetResults() ([]ReadableResult, error) {
 		a := results[i]
 		b := results[j]
 
-		aRank := a.VotesFor - a.VotesAgainst
-		bRank := b.VotesFor - b.VotesAgainst
+		aRank := getPercentage(a.VotesFor, a.VotesFor+a.VotesAgainst)
+		bRank := getPercentage(b.VotesFor, b.VotesFor+b.VotesAgainst)
 
 		if aRank == bRank {
 			return a.VotesFor > b.VotesFor
@@ -59,8 +63,8 @@ func GetResults() ([]ReadableResult, error) {
 
 	for _, result := range results {
 		totalVotes := result.VotesAgainst + result.VotesFor
-		winPercentage := getPercentage(result.VotesFor, int64(totalVotes))
-		lossPercentage := getPercentage(result.VotesAgainst, int64(totalVotes))
+		winPercentage := getPercentageString(result.VotesFor, int64(totalVotes))
+		lossPercentage := getPercentageString(result.VotesAgainst, int64(totalVotes))
 
 		readableResults = append(readableResults, ReadableResult{
 			ID:             fmt.Sprintf("#%d", result.ID),
