@@ -20,6 +20,7 @@ func voteButton(winnerId int32, loserId int32) g.Node {
 		g.Attr("onsubmit", "event.preventDefault();"),
 		hx.Target("#battleground"),
 		hx.Swap("outerHTML"),
+		h.Class("w-full"),
 		h.Input(h.Type("hidden"), h.Value(winnerIdString), h.Name("winnerId")),
 		h.Input(h.Type("hidden"), h.Value(loserIdString), h.Name("loserId")),
 		h.Button(
@@ -32,7 +33,7 @@ func voteButton(winnerId int32, loserId int32) g.Node {
 
 func PokeView(pokemon queries.Pokemon, loserId int32) g.Node {
 	return h.Div(
-		h.Class("flex flex-col gap-4"),
+		h.Class("flex flex-col gap-4 text-center items-center"),
 		h.Img(
 			h.Class("w-48 h-48"),
 			h.Style("image-rendering: pixelated;"),
