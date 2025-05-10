@@ -2,7 +2,7 @@
 
 Let users vote on which Pokémon they think is the roundest to find out what the roundest Pokémon is.
 
-This Project is inspired by the [1 App, 5 Stacks](https://github.com/t3dotgg/1app5stacks) Project by @t3dotgg which implements [Roundest Mon](https://github.com/t3dotgg/roundest-mon) in 5 different tech stacks. I felt like a Go + HTMX version was missing so I built it.
+This project is inspired by the [1 App, 5 Stacks](https://github.com/t3dotgg/1app5stacks) project by @t3dotgg which implements [Roundest Mon](https://github.com/t3dotgg/roundest-mon) in 5 different tech stacks. I felt like a Go + HTMX version was missing so I built it.
 
 ## Tech Stack
 
