@@ -15,6 +15,17 @@
       "database": "postgres",
       "password": "devPassword",
       "username": "postgres"
+    },
+    {
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "185.254.97.130",
+      "port": 5432,
+      "askForPassword": true,
+      "driver": "PostgreSQL",
+      "name": "dokploy",
+      "username": "postgres",
+      "database": "postgres"
     }
   ]
 }
