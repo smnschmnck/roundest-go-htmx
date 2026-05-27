@@ -13,7 +13,7 @@ COPY --from=node /usr/local/ /usr/local/
 RUN npm install -g pnpm
 
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --config.strict-dep-builds=false
 
 COPY go.mod go.sum ./
 RUN go mod download
