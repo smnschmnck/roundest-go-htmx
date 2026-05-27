@@ -10,7 +10,7 @@ RUN apt-get update \
 
 COPY --from=node /usr/local/ /usr/local/
 
-RUN corepack enable
+RUN npm install -g pnpm
 
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
