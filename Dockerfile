@@ -4,6 +4,8 @@ FROM golang:1.24.3-bookworm AS builder
 
 WORKDIR /app
 
+ENV npm_config_strict_dep_builds=false
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates \
     && rm -rf /var/lib/apt/lists/*
@@ -13,7 +15,7 @@ COPY --from=node /usr/local/ /usr/local/
 RUN npm install -g pnpm
 
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile --config.strict-dep-builds=false
+RUN pnpm install --frozen-lockfile
 
 COPY go.mod go.sum ./
 RUN go mod download
